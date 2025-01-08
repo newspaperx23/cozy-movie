@@ -33,11 +33,11 @@ const Slider = () => {
     <>
       <div>
         <HiChevronLeft
-          className="hidden md:block text-white text-[30px] absolute mx-8 mt-[150px] cursor-pointer"
+          className="hidden md:block text-white text-[30px] absolute mx-8 mt-[150px] cursor-pointer z-20"
           onClick={() => sliderLeft(elementRef.current)}
         />
         <HiChevronRight
-          className="hidden md:block text-white text-[30px] absolute mx-8 mt-[150px] cursor-pointer right-0"
+          className="hidden md:block text-white text-[30px] absolute mx-8 mt-[150px] cursor-pointer right-0 z-20"
           onClick={() => sliderRight(elementRef.current)}
         />
       </div>
@@ -54,7 +54,7 @@ const Slider = () => {
               className="w-full h-full object-cover rounded-md shadow-md"
             />
             {/* Overlay สำหรับชื่อหนัง */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 bg-black/50 rounded-md transition-all">
+            <div className="absolute inset-0 cursor-pointer flex items-center justify-center opacity-0 hover:opacity-100 bg-black/50 rounded-md transition-all">
               <h3 className="text-white text-3xl cursor-pointer font-bold text-center truncate px-4">
                 {item.title || item.name} {/* ใช้ title หากไม่มีให้ใช้ name */}
               </h3>
