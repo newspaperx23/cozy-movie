@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // En
 import './App.css';
 import HomePage from './components/HomePage';
 import MovieDetail from './components/MovieDetail';
+import Watchlist from './components/WatchList';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/movie/:id' element={<MovieDetail />} />
+        <Route path='/watchlist' element={<Watchlist/>}/>
       </Routes>
     </Router>
   );

@@ -4,14 +4,36 @@ import { HiHome, HiMagnifyingGlass , HiStar, HiPlayCircle, HiTv } from 'react-ic
 import { HiPlus, HiDotsVertical } from 'react-icons/hi'
 import HeaderItem from './HeaderItem'
 import { Link } from 'react-router-dom'
+import { auth, provider } from "../Services/firebase";
+import { signInWithPopup, signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
+    const [user] = useAuthState(auth);
+
+        // ฟังก์ชันสำหรับ Login
+    const handleLogin = async () => {
+        try {
+        await signInWithPopup(auth, provider);
+        } catch (error) {
+        console.error("Error logging in:", error);
+        }
+    };
+
+            // ฟังก์ชันสำหรับ Logout
+        const handleLogout = async () => {
+            try {
+            await signOut(auth);
+            } catch (error) {
+            console.error("Error logging out:", error);
+            }
+        };
 
     const menu = [
         { name: 'HOME', icon: HiHome , path: '/' },
         { name: 'SEARCH', icon: HiMagnifyingGlass },
-        { name: 'WATCH LIST', icon: HiPlus },
+        { name: 'WATCH LIST', icon: HiPlus, path: '/watchlist'},
         { name: 'ORIGINALS', icon: HiStar },
         { name: 'MOVIES', icon: HiPlayCircle },
         { name: 'SERIES', icon: HiTv },
@@ -54,8 +76,36 @@ const Header = () => {
                 </div>
 
                 {/* โปรไฟล์ */}
-                <img src="https://avatars.githubusercontent.com/u/187186211?v=4" className='w-[40px] h-[40px] rounded-full'/>
-            </div>
+                {/* <img src="https://avatars.githubusercontent.com/u/187186211?v=4" className='w-[40px] h-[40px] rounded-full'/> */}
+                <div className="">
+                        {user ? (
+                            <div className="flex">
+                            {/* <img
+                                src={user.photoURL}
+                                alt="User Profile"
+                                className="w-20 h-20 rounded-full mx-auto"
+                            /> */}
+                            <h2 className="hidden md:block text-lg font-semibold mt-4 mx-3">{user.displayName}</h2>
+                            {/* <p className="text-gray-600">{user.email}</p> */}
+                            <button
+                                onClick={handleLogout}
+                                className="mt-5 mb-5 px-3 bg-red-500 text-white rounded-md"
+                            >
+                                Logout
+                            </button>
+                            </div>
+                        ) : (
+                            <div className="text-center">
+                            <button
+                                onClick={handleLogin}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                            >
+                                Login
+                            </button>
+                            </div>
+                        )}
+                    </div>
+                 </div>
         </div>
     )
 }
