@@ -18,7 +18,7 @@ const MovieList = ({ genreID }) => {
   const getMovieByGenreId = async () => {
     try {
       const resp = await GlobalAPI.getMovieByGenreID(genreID);
-      console.log("Movies by Genre:", resp.results);
+      // console.log("Movies by Genre:", resp.results);
       setMovies(resp.results); // Store the results in state
     } catch (error) {
       console.error("Error fetching movies by genre:", error);

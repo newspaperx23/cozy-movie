@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../Services/firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import Header from './Header';
 
@@ -54,15 +54,28 @@ function Watchlist() {
       const watchlistRef = collection(db, "favorites");
       const q = query(watchlistRef, where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
-      const movies = querySnapshot.docs.map((doc) => doc.data()); // ดึงข้อมูลหนังจาก Firestore
+      const movies = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })); // เก็บข้อมูลหนังจาก Firestore พร้อม id
       setWatchlist(movies);
     } catch (error) {
       console.error("Error fetching watchlist:", error);
     }
   };
 
+  // ฟังก์ชันลบหนังออกจาก Watchlist
+  const removeFromWatchlist = async (movieId) => {
+    try {
+      const movieDoc = doc(db, "favorites", movieId); // หาหนังที่ต้องการลบจาก Firestore โดยใช้ id
+      await deleteDoc(movieDoc); // ลบหนังออกจาก Firestore
+      setWatchlist((prevWatchlist) =>
+        prevWatchlist.filter((movie) => movie.id !== movieId) // อัพเดต state ให้ลบหนังออก
+      );
+    } catch (error) {
+      console.error("Error removing movie from watchlist:", error);
+    }
+  };
+
   if (!user) {
-    return <p>Please log in to see your watchlist.</p>; // แจ้งให้ผู้ใช้ล็อกอิน
+    return <p className='text-center mt-5'>Please log in to see your watchlist. <a href='/' className='text-blue-800'>Go to Home</a></p>; // แจ้งให้ผู้ใช้ล็อกอิน
   }
 
   return (
@@ -74,15 +87,22 @@ function Watchlist() {
         {movieDetails.length === 0 ? (
           <p className="text-center">No movies in your watchlist yet.</p>
         ) : (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {movieDetails.map((movie, index) => (
-              <div key={index} className="flex flex-col items-center">
+              <div key={index} className="flex flex-col items-center bg-black p-8 rounded-md">
                 <img
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                   alt={movie.title}
                   className="rounded-md shadow-md"
                 />
-                <h3 className="text-xl mt-2">{movie.title}</h3>
+                <h3 className="text-md text-center mt-2">{movie.title}</h3>
+                {/* ปุ่มลบหนังออกจาก Watchlist */}
+                <button
+                  className="mt-2 bg-red-500 hover:bg-red-700 transition-all text-white px-4 py-2 rounded-md"
+                  onClick={() => removeFromWatchlist(watchlist[index].id)} // เรียกฟังก์ชัน removeFromWatchlist เมื่อคลิก
+                >
+                  Remove
+                </button>
               </div>
             ))}
           </div>

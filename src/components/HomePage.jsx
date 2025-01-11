@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import Slider from './Slider'
+import Slider2 from './Slider2'
 import ProductionHouse from './ProductionHouse'
 import GenreMovieList from './GenreMovieList'
 import { Link } from 'react-router-dom'
@@ -11,7 +11,7 @@ const HomePage = () => {
     <>
     <Header/>
 
-    <Slider/>
+    <Slider2/>
 
     <ProductionHouse/>
 

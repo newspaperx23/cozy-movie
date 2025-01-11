@@ -52,7 +52,7 @@ const ProductionHouse = () => {
 
                 <video src={item.video} autoPlay loop playsInline muted
                 className='absolute top-0 rounded-md z-0 opacity-0
-                hover:opacity-50'/>
+                hover:opacity-50 w-full'/>
 
                 <img src={item.image} 
                 className='w-full z-[1]'/>
