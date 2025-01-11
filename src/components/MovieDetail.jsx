@@ -8,6 +8,8 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { IoMdAdd } from "react-icons/io";
 import { CiYoutube } from "react-icons/ci";
+import { LiaImdb } from "react-icons/lia";
+
 
 function MovieDetail() {
   const movieBaseUrl = "https://api.themoviedb.org/3";
@@ -165,8 +167,8 @@ function MovieDetail() {
               </h1>
 
               <div className="md:float-left flex justify-center items-center">
-                <div className="flex md:pl-8 gap-3">
-                  <CircularProgressbar
+                <div className="flex justify-center items-center md:pl-8 gap-0">
+                  {/* <CircularProgressbar
                     value={ratingVote * 10}
                     text={`${ratingVote.toFixed(1)}%`}
                     styles={{
@@ -179,8 +181,14 @@ function MovieDetail() {
                       },
                     }}
                     className="h-16"
-                  />
-                  <p className="items-center justify-center flex opacity-70">
+                  /> */}
+                  <p className="ml-3  ">
+                    <LiaImdb className="text-[26px] -rotate-90 text-amber-400" />
+                  </p>
+                  <p className="flex border border-amber-700 rounded px-2 tracking-widest text-[18px] mr-4 text-amber-400">
+                    {ratingVote.toFixed(2)}
+                  </p>
+                  <p className="items-center justify-center flex opacity-70 mx-3">
                     {movieDetail.release_date.split("-")[0]}
                   </p>
                   <p className="items-center justify-center flex opacity-70">
