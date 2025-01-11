@@ -101,46 +101,30 @@ const Slider2 = () => {
 
                     <div className="flex items-center justify-center clear-both float-left">
                       <div className="px-4">
-                      {/* <CircularProgressbar
-                          value={item.vote_average * 10}
-                          text={`${item.vote_average}%`}
-                          styles={{
-                            path: {
-                              stroke: progressBarColor,
-                            },
-                            text: {
-                              fill: textColor,
-                              fontSize: "28px",
-                            },
-                          }}
-                          className="h-10"
-                        /> */}
+                        <div className="absolute top-24">
+                          <CircularProgressbar
+                            value={item.vote_average * 10}
+                            text={`${item.vote_average}%`}
+                            styles={{
+                              path: {
+                                stroke: progressBarColor,
+                              },
+                              text: {
+                                fill: textColor,
+                                fontSize: "28px",
+                              },
+                            }}
+                            className="h-10"
+                          />
+                        </div>
                       </div>
-                      {/* <p className=" flex border rounded my-2 px-2 tracking-widest text-[10px] opacity-70">
+                      <p className=" flex border rounded my-4 mx-8 px-2 tracking-widest text-[10px] opacity-70">
                         {item.original_language}
-                      </p> */}
+                      </p>
                     </div>
                     {/* แสดง genre */}
                     <div className="flex items-center justify-center px-4 text-xs opacity-70">
-                    <CircularProgressbar
-                          value={item.vote_average * 10}
-                          text={`${item.vote_average}%`}
-                          styles={{
-                            path: {
-                              stroke: progressBarColor,
-                            },
-                            text: {
-                              fill: textColor,
-                              fontSize: "28px",
-                            },
-                          }}
-                          className="h-10"
-                        />
-                       {getGenres(item.genre_ids)}
-                       <p className=" flex border rounded my-2 px-2 tracking-widest text-[10px] opacity-70">
-                        {item.original_language}
-                      </p>
-                       
+                      {getGenres(item.genre_ids)}
                     </div>
                   </div>
                   <div className="absolute inset-0 cursor-pointer flex items-center justify-center bg-gradient-to-r from-black to-transparent md:rounded-md transition-all"></div>
