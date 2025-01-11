@@ -98,7 +98,7 @@ const Slider2 = () => {
                         ? item.overview.slice(0, 150) + "..."
                         : item.overview}
                     </p>
-                    <div className="flex items-center justify-center clear-both float-left">
+                    <div className="absolute top-44 flex">
                       <p className="px-4">
                         <CircularProgressbar
                           value={item.vote_average * 10}
