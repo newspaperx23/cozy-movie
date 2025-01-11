@@ -93,11 +93,12 @@ const Slider2 = () => {
                     <h3 className="text-white text-3xl cursor-pointer font-bold text-left px-4">
                       {item.title || item.name}
                     </h3>
-                    <p className="w-full text-xs md:w-2/4 text-left px-4">
+                    <p className="text-xs text-left px-4">
                       {item.overview && item.overview.length > 100
                         ? item.overview.slice(0, 150) + "..."
                         : item.overview}
                     </p>
+                    <br/>
                     <div className="flex items-center justify-center">
                       <p className="px-4">
                         <CircularProgressbar
