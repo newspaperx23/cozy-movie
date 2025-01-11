@@ -101,8 +101,8 @@ const Slider2 = () => {
 
                     {/* Flexbox สำหรับ CircularProgressbar และ language */}
                     <div className="flex items-center justify-start space-x-4">
-                      <div className="px-4">
-                        <CircularProgressbar
+                      {/* <div className="px-4">
+                         <CircularProgressbar
                           value={item.vote_average * 10}
                           text={`${item.vote_average}%`}
                           styles={{
@@ -115,8 +115,11 @@ const Slider2 = () => {
                             },
                           }}
                           className="h-10"
-                        />
-                      </div>
+                        /> *
+                      </div> */}
+                      <p className="flex border rounded my-2 px-2 mx-4 tracking-widest text-[18px] opacity-70 text-green-500">
+                        {item.vote_average}
+                      </p>
                       <p className="flex border rounded my-2 px-2 tracking-widest text-[10px] opacity-70">
                         {item.original_language}
                       </p>
