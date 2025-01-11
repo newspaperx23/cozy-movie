@@ -98,9 +98,31 @@ const Slider2 = () => {
                         ? item.overview.slice(0, 150) + "..."
                         : item.overview}
                     </p>
-                    <div className="absolute top-44 flex">
-                      <p className="px-4">
-                        <CircularProgressbar
+
+                    <div className="flex items-center justify-center clear-both float-left">
+                      <div className="px-4">
+                      {/* <CircularProgressbar
+                          value={item.vote_average * 10}
+                          text={`${item.vote_average}%`}
+                          styles={{
+                            path: {
+                              stroke: progressBarColor,
+                            },
+                            text: {
+                              fill: textColor,
+                              fontSize: "28px",
+                            },
+                          }}
+                          className="h-10"
+                        /> */}
+                      </div>
+                      {/* <p className=" flex border rounded my-2 px-2 tracking-widest text-[10px] opacity-70">
+                        {item.original_language}
+                      </p> */}
+                    </div>
+                    {/* แสดง genre */}
+                    <div className="flex items-center justify-center px-4 text-xs opacity-70">
+                    <CircularProgressbar
                           value={item.vote_average * 10}
                           text={`${item.vote_average}%`}
                           styles={{
@@ -114,14 +136,11 @@ const Slider2 = () => {
                           }}
                           className="h-10"
                         />
-                      </p>
-                      <p className=" flex border rounded my-2 px-2 tracking-widest text-[10px] opacity-70">
+                       {getGenres(item.genre_ids)}
+                       <p className=" flex border rounded my-2 px-2 tracking-widest text-[10px] opacity-70">
                         {item.original_language}
                       </p>
-                    </div>
-                    {/* แสดง genre */}
-                    <div className="px-4 text-xs opacity-70">
-                       {getGenres(item.genre_ids)}
+                       
                     </div>
                   </div>
                   <div className="absolute inset-0 cursor-pointer flex items-center justify-center bg-gradient-to-r from-black to-transparent md:rounded-md transition-all"></div>
