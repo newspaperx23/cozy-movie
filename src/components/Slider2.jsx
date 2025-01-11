@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { LiaImdb } from "react-icons/lia";
 
 const genere = [
   { id: 28, name: "Action" },
@@ -100,7 +101,7 @@ const Slider2 = () => {
                     </p>
 
                     {/* Flexbox สำหรับ CircularProgressbar และ language */}
-                    <div className="flex items-center justify-start space-x-4">
+                    <div className="flex items-center justify-start">
                       {/* <div className="px-4">
                          <CircularProgressbar
                           value={item.vote_average * 10}
@@ -117,10 +118,11 @@ const Slider2 = () => {
                           className="h-10"
                         /> *
                       </div> */}
-                      <p className="flex border rounded my-2 px-2 mx-4 tracking-widest text-[18px] opacity-70 text-green-500">
-                        {item.vote_average}
+                      <p className="ml-3  "><LiaImdb className="text-[26px] -rotate-90 text-amber-400"/></p>
+                      <p className="flex border border-amber-700 rounded px-2 tracking-widest text-[18px] mr-4 text-amber-400">
+                        {item.vote_average.toFixed(2)}
                       </p>
-                      <p className="flex border rounded my-2 px-2 tracking-widest text-[10px] opacity-70">
+                      <p className="flex border rounded my-2 px-3 py-1 tracking-widest text-[12px] opacity-70">
                         {item.original_language}
                       </p>
                     </div>
