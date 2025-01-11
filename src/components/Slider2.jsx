@@ -98,7 +98,7 @@ const Slider2 = () => {
                         ? item.overview.slice(0, 150) + "..."
                         : item.overview}
                     </p>
-                   <div className="flex items-center justify-start">
+                    <div className="flex items-center justify-center">
                       <p className="px-4">
                         <CircularProgressbar
                           value={item.vote_average * 10}
@@ -115,9 +115,9 @@ const Slider2 = () => {
                           className="h-10"
                         />
                       </p>
-                      <div className="items-center justify-center flex border rounded my-2 px-2 tracking-widest text-xs opacity-70">
+                      <p className=" flex border rounded my-2 px-2 tracking-widest text-[10px] opacity-70">
                         {item.original_language}
-                      </div>
+                      </p>
                     </div>
                     {/* แสดง genre */}
                     <div className="px-4 text-xs opacity-70">
