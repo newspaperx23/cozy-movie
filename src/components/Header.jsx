@@ -57,7 +57,9 @@ const Header = () => {
     <div className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur px-5 rounded-lg m-4">
       <div className="flex items-center justify-between w-full gap-2 md:gap-8">
         {/* โลโก้ */}
-        <img src={logo} className="w-[80px] md:w-[80px] object-cover" alt="Cozy Logo" />
+        <Link to="/">
+          <img src={logo} className="w-[80px] md:w-[80px] object-cover" alt="Cozy Logo" />
+        </Link>
 
         {/* เมนูสำหรับหน้าจอขนาดกลางขึ้นไป */}
         <div className="hidden md:flex gap-8">
