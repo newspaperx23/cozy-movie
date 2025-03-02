@@ -4,7 +4,6 @@ import Header from "./Header";
 import { auth, db } from "../Services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
-import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { IoMdAdd } from "react-icons/io";
 import { CiYoutube } from "react-icons/ci";
@@ -95,8 +94,9 @@ function MovieDetail() {
   // ฟังก์ชันเพิ่มหนังเข้า Watchlist
   const addToWatchlist = async () => {
     if (!user) return;
-
+  
     try {
+      console.log("Adding to watchlist...");
       const watchlistRef = collection(db, "favorites");
       await addDoc(watchlistRef, {
         uid: user.uid,
@@ -104,6 +104,7 @@ function MovieDetail() {
         addedAt: new Date().toISOString(),
       });
       setIsInWatchlist(true); // อัปเดตสถานะ
+      console.log("Added to watchlist successfully");
     } catch (error) {
       console.error("Error adding to watchlist:", error);
     }
@@ -119,7 +120,9 @@ function MovieDetail() {
         where("movieId", "==", movieId)
       );
       const querySnapshot = await getDocs(q);
-      setIsInWatchlist(!querySnapshot.empty); // ถ้าเจอข้อมูล จะตั้งค่าเป็น true
+      const isInWatchlist = !querySnapshot.empty;
+      setIsInWatchlist(isInWatchlist); // ถ้าเจอข้อมูล จะตั้งค่าเป็น true
+      console.log("Watchlist status:", isInWatchlist);
     } catch (error) {
       console.error("Error checking watchlist:", error);
     }
@@ -207,23 +210,23 @@ function MovieDetail() {
               <div className="flex justify-center md:justify-start md:ml-8 gap-4">
                 {user && (
                   <button
-                    onClick={addToWatchlist}
-                    disabled={isInWatchlist}
-                    className={`mt-4 px-4 py-2 rounded mb-4 ${
-                      isInWatchlist
-                        ? "bg-gray-800 cursor-not-allowed"
-                        : "border text-white hover:scale-110 transition-all hover:border-orange-600"
-                    }`}
-                  >
-                    {isInWatchlist ? (
-                      "Added to Watchlist"
-                    ) : (
-                      <span className="flex justify-center items-center gap-2">
-                        <IoMdAdd className="text-2xl" />
-                        Add to Watchlist
-                      </span>
-                    )}
-                  </button>
+                  onClick={addToWatchlist}
+                  disabled={isInWatchlist}
+                  className={`mt-4 px-4 py-2 rounded mb-4 ${
+                    isInWatchlist
+                      ? "bg-gray-800 cursor-not-allowed"
+                      : "border text-white hover:scale-110 transition-all hover:border-orange-600"
+                  }`}
+                >
+                  {isInWatchlist ? (
+                    "Added to Watchlist"
+                  ) : (
+                    <span className="flex justify-center items-center gap-2">
+                      <IoMdAdd className="text-2xl" />
+                      Add to Watchlist
+                    </span>
+                  )}
+                </button>
                 )}
 
                 <button
