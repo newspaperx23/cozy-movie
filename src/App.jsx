@@ -3,7 +3,7 @@ import './App.css';
 import HomePage from './components/HomePage';
 import MovieDetail from './components/MovieDetail';
 import Watchlist from './components/WatchList';
-import Animationpage from './components/animationpage';
+import Animationpage from './components/Animationpage';
 import Moviespage from './components/Moviespage';
 import SeriesPage from './components/SeriesPage';
 import ContactPage from './components/ContactPage';
