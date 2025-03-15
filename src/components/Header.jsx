@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { auth, provider } from "../Services/firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { TbBrandDisney } from "react-icons/tb";
+import { MdContactSupport } from "react-icons/md";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
@@ -49,8 +51,10 @@ const Header = () => {
     // { name: "SEARCH", icon: HiMagnifyingGlass },
     { name: "WATCHLIST", icon: HiPlus, path: "/watchlist" },
     // { name: "ORIGINALS", icon: HiStar },
-    { name: "MOVIES", icon: HiPlayCircle },
-    { name: "SERIES", icon: HiTv },
+    { name: "MOVIES", icon: HiPlayCircle, path: "/moviespage" },
+    { name: "SERIES", icon: HiTv,path: "/seriespage" },
+    { name: "ANIMATION", icon: TbBrandDisney, path: "/animation" },
+    { name: "CONTACT", icon: MdContactSupport, path: "/contactpage" },
   ];
 
   return (
